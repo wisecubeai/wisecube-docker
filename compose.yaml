@@ -26,16 +26,15 @@ services:
     networks:
       - wisecube-net
     environment:
-      - OPENAI_API_KEY=<API_KEY>
+      - OPENAI_API_KEY=API_KEY
+
 
   wisecube-grafana:
-    image: grafana/grafana:8.3.7
+    image: grafana/grafana:8.3.4
     networks:
       - wisecube-net
     depends_on:
      - wisecube-postgres
-    ports:
-      - 3000:3000
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true #Enabled the Anonymous user no user/pass needed
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer #Activate the ROLE VIEWER as Default
