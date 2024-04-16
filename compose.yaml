@@ -1,0 +1,83 @@
+version: '3.8'
+
+
+services:
+  wisecube-api:
+    image: public.ecr.aws/u9o1b9m6/wisecube-graphql-api:latest
+    networks:
+      - wisecube-net
+    depends_on:
+      - wisecube-pythia
+      - wisecube-postgres
+  
+  wisecube-postgres:
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: wisecube 
+      POSTGRES_PASSWORD: wisecube2024 
+      POSTGRES_DB: pythia 
+    networks:
+      - wisecube-net
+    ports:
+      - 5432:5432
+      
+  wisecube-pythia:
+    image:  public.ecr.aws/u9o1b9m6/wisecube-pythia:latest
+    networks:
+      - wisecube-net
+    environment:
+      - OPENAI_API_KEY=<API_KEY>
+
+  wisecube-grafana:
+    image: grafana/grafana:8.3.7
+    networks:
+      - wisecube-net
+    depends_on:
+     - wisecube-postgres
+    ports:
+      - 3000:3000
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true #Enabled the Anonymous user no user/pass needed
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer #Activate the ROLE VIEWER as Default
+      - GF_AUTH_BASIC_ENABLED=false #Disable the AUTH Method
+      - GF_AUTH_DISABLE_LOGIN_FORM=true #Disable the login on show
+      - GF_AUTH_DISABLE_SIGNOUT_MENU=true #Diabled the menu
+      - GF_SECURITY_ALLOW_EMBEDDING=true #Allow IFRAME Calls
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true  
+      - GF_SERVE_FROM_SUB_PATH=true
+      - GF_AUTH_PROXY_ENABLED=true
+      - GF_SERVER_DOMAIN=localhost
+      - GF_SERVER_ROOT_URL=http://localhost:8000/grafana/
+    volumes:
+      - ${PWD}/grafana/provisioning:/etc/grafana/provisioning
+      - ${PWD}/grafana/dashboards:/var/lib/grafana/dashboards
+    
+  wisecube-kong-dbless:
+    image: kong/kong-gateway:3.6.1.2
+    container_name: wisecube-kong-dbless
+    networks:
+      - wisecube-net
+    volumes:
+      - ${PWD}/kong:/kong/declarative/
+    environment:
+      - KONG_DATABASE=off
+      - KONG_DECLARATIVE_CONFIG=/kong/declarative/kong_config.yml
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+      - KONG_ADMIN_GUI_URL=http://localhost:8002
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "8444:8444"
+      - "8002:8002"
+      - "8445:8445"
+      - "8003:8003"
+      - "8004:8004"
+
+networks:
+  wisecube-net:
+    external: true

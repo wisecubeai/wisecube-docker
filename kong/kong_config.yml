@@ -1,0 +1,31 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - host: wisecube-api
+    name: wisecube-api
+    port: 8080
+    protocol: http
+    routes:
+      - name: graphql-api
+        paths:
+          - /api
+        strip_path: true
+  - host: wisecube-grafana
+    name: wisecube-grafana
+    port: 3000
+    protocol: http
+    routes:
+      - name: grafana-dashboars
+        paths:
+          - /grafana
+        strip_path: true
+
+plugins:
+- name: request-transformer
+  service: wisecube-grafana
+  config:
+    add:
+      headers:
+        - "Host: localhost:8000"
+        - "Origin: http://localhost:8000"
