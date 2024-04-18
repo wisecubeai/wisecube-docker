@@ -62,6 +62,7 @@ docker run -d -p 3000:3000 --name=grafana --network=wisecube-net grafana/grafana
 3. Use the Json and save it under `grafana/dashboards`
 ![alt text](image-3.png)
 
+![alt text](image-4.png)
 
 ### TODO
 1. For the Moment the user are chose randm so we need to have a method to pass the user info( user_id, token etc.) to the java application
