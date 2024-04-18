@@ -23,7 +23,7 @@
   "panels": [
     {
       "datasource": {
-        "type": "postgresql",
+        "type": "postgres",
         "uid": "pgds"
       },
       "fieldConfig": {
@@ -102,7 +102,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgresql",
+            "type": "postgres",
             "uid": "pgds"
           },
           "editorMode": "builder",
@@ -172,7 +172,7 @@
     },
     {
       "datasource": {
-        "type": "postgresql",
+        "type": "postgres",
         "uid": "pgds"
       },
       "fieldConfig": {
@@ -249,7 +249,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgresql",
+            "type": "postgres",
             "uid": "pgds"
           },
           "editorMode": "builder",
@@ -297,7 +297,7 @@
     },
     {
       "datasource": {
-        "type": "postgresql",
+        "type": "postgres",
         "uid": "pgds"
       },
       "fieldConfig": {
@@ -352,7 +352,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgresql",
+            "type": "postgres",
             "uid": "pgds"
           },
           "editorMode": "builder",
@@ -435,7 +435,7 @@
     },
     {
       "datasource": {
-        "type": "postgresql",
+        "type": "postgres",
         "uid": "pgds"
       },
       "fieldConfig": {
@@ -513,7 +513,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgresql",
+            "type": "postgres",
             "uid": "pgds"
           },
           "editorMode": "builder",
@@ -562,7 +562,7 @@
     },
     {
       "datasource": {
-        "type": "postgresql",
+        "type": "postgres",
         "uid": "pgds"
       },
       "fieldConfig": {
@@ -639,7 +639,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgresql",
+            "type": "postgres",
             "uid": "pgds"
           },
           "editorMode": "builder",
@@ -687,7 +687,7 @@
     },
     {
       "datasource": {
-        "type": "postgresql",
+        "type": "postgres",
         "uid": "pgds"
       },
       "fieldConfig": {
@@ -721,8 +721,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -764,7 +763,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgresql",
+            "type": "postgres",
             "uid": "pgds"
           },
           "editorMode": "builder",
@@ -812,7 +811,7 @@
     },
     {
       "datasource": {
-        "type": "postgresql",
+        "type": "postgres",
         "uid": "pgds"
       },
       "fieldConfig": {
@@ -846,8 +845,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -889,7 +887,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgresql",
+            "type": "postgres",
             "uid": "pgds"
           },
           "editorMode": "builder",
@@ -936,6 +934,7 @@
       "type": "barchart"
     }
   ],
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -949,6 +948,6 @@
   "timezone": "browser",
   "title": "AccuracyByUser",
   "uid": "ediwqxtwnwg00a",
-  "version": 7,
+  "version": 8,
   "weekStart": ""
 }
