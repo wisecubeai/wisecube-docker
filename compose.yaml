@@ -3,7 +3,7 @@ version: '3.8'
 
 services:
   wisecube-api:
-    image: wisecube-graphql-api:latest
+    image: public.ecr.aws/u9o1b9m6/wisecube-graphql-api:latest
     networks:
       - wisecube-net
     depends_on:
@@ -25,6 +25,7 @@ services:
     image:  public.ecr.aws/u9o1b9m6/wisecube-pythia:latest
     networks:
       - wisecube-net
+
     environment:
       - OPENAI_API_KEY=APIKEY
 
