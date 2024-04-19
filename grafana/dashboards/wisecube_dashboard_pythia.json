@@ -361,6 +361,93 @@
       ],
       "title": "Claims",
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgds"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 23,
+        "x": 0,
+        "y": 36
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgds"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT p.id as questionId, c.class, ARRAY_AGG(cc.claim) AS claims\nFROM pythia_data as p\nJOIN claims as c ON p.id = c.pythia_data_id\nJOIN claim_claim as cc ON cc.claim_id  = c.id\nWHERE p.user_id IN ($UserNames) AND p.question IN ( $Questions) AND c.class IN ( $Classes  )\nGROUP BY p.id, c.id, c.class\n\n\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "ClaimsTriplesByQuestion",
+      "type": "table"
     }
   ],
   "schemaVersion": 39,
@@ -369,9 +456,13 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "WisecubeTest",
-          "value": "WisecubeTest"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "postgres",
@@ -392,9 +483,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "",
-          "value": ""
+          "selected": true,
+          "text": [
+            "Incision and drainage of the penoscrotal abscess, packing, penile biopsy, cystoscopy, and urethral dilation?"
+          ],
+          "value": [
+            "Incision and drainage of the penoscrotal abscess, packing, penile biopsy, cystoscopy, and urethral dilation?"
+          ]
         },
         "datasource": {
           "type": "postgres",
@@ -415,9 +510,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "entailment",
-          "value": "entailment"
+          "selected": true,
+          "text": [
+            "entailment"
+          ],
+          "value": [
+            "entailment"
+          ]
         },
         "hide": 0,
         "includeAll": true,
@@ -430,12 +529,12 @@
             "value": "$__all"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "entailment",
             "value": "entailment"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "contradiction",
             "value": "contradiction"
           },
@@ -460,6 +559,6 @@
   "timezone": "browser",
   "title": "PythiaQueries",
   "uid": "bdj08s7hc4ttsa",
-  "version": 18,
+  "version": 23,
   "weekStart": ""
 }
