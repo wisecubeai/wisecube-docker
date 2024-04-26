@@ -22,7 +22,7 @@ if [ "$1" == "--install" ]; then
     fi
 elif [ "$1" == "--uninstall" ]; then
     echo -e "Running the uninstall command will result in losing all the data from database\nand also delete:\n\t-networks\n\t-volumes\n"
-    read -p "This changes are permannt, are you sure(yes/no): " choice
+    read -p "This changes are permanent, are you sure(yes/no): " choice
     if [ "$choice" == "yes" ]; then
         echo -e "$Uninstalling...\n"
         docker-compose -f docker-compose.yaml -p wisecube-stack down --volumes

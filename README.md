@@ -2,27 +2,22 @@
 
 ### Run the Stack
 
-#### 1. Create a dedicated Docker network
-```
-docker network create wisecube-net
-```
-#### 2. Add the OPENAI_API_KEY to the compose file
-```
-  wisecube-pythia:
-    image:  public.ecr.aws/u9o1b9m6/wisecube-pythia:latest
-    networks:
-      - wisecube-net
-    ports:
-      - 8085:8085
-    environment:
-      - OPENAI_API_KEY=<OPENAI_API_KEY>
+1. Give execute permissions to `wisecube_install.sh`
 
 ```
-#### 3. Run doccker compose
+chmod +x wisecube_install.sh
 ```
-docker compose up
+2. Run the install script with the `--install` command and after the openapi key is set will create all the require resources for the stack (network, volumes)
+
+```
+./wisecube_install.sh --install
 ```
 
+### Clean up
+To remove all the resources created run the script with the command `--uninstall`
+```
+./wisecube_install.sh --uninstall 
+```
 
 ### Test
 URL FOR DASHBOARDS `http://localhost:8000/grafana`

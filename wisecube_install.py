@@ -53,9 +53,9 @@ def run_docker_compose(compose_file):
 
 def main():
     print("Configure the Wisecube Stack!")
-    api_key = input("1. Enter your key: ")
+    api_key = input("1. Enter your openapi key: ")
     if api_key is None:
-        raise Exception("No api key was provided!")
+        raise Exception("No openapi key was provided!")
     
     create_docker_volume(POSTGRES_VOLUME)
     create_docker_network(WISECUBE_NETWORK)
