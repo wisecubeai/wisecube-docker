@@ -3,8 +3,8 @@
 
 if [ "$1" == "--install" ]; then
     echo "Creating the env to install the wisecube stack..."
-    which python3.7
-    python3.7 -m venv venv
+    python3 -m venv venv
+    pip install --upgrade docker-compose
     source venv/bin/activate
     pip install -r requirements.txt
 
