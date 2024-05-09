@@ -11,8 +11,8 @@ if [ "$1" == "--install" ]; then
     echo "Succesufluly create the python env!"
     sleep 3
     clear
-    which python3.7
-    python3.7 wisecube_install.py
+
+    python3 wisecube_install.py
     installer_exit_code=$?
     deactivate
     echo "Deleting the python env..."
