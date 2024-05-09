@@ -69,7 +69,7 @@ services:
       type: volume
   wisecube-pythia:
     environment:
-    - OPENAI_API_KEY=dfsdfs
+    - OPENAI_API_KEY=dfd
     image: public.ecr.aws/u9o1b9m6/wisecube-pythia:latest
     networks:
     - wisecube-net

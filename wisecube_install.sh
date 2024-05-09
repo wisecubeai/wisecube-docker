@@ -3,14 +3,16 @@
 
 if [ "$1" == "--install" ]; then
     echo "Creating the env to install the wisecube stack..."
-    python3 -m venv venv
+    which python3.7
+    python3.7 -m venv venv
     source venv/bin/activate
     pip install -r requirements.txt
 
     echo "Succesufluly create the python env!"
     sleep 3
     clear
-    python wisecube_install.py
+    which python3.7
+    python3.7 wisecube_install.py
     installer_exit_code=$?
     deactivate
     echo "Deleting the python env..."
@@ -33,5 +35,4 @@ else
     echo -e "Usage: $0 \n\t--install (Create all the resources for the Wisecube Stack)\n\t--uninstall (Remove all resources)"
     exit 1
 fi
-
 

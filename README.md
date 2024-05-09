@@ -9,14 +9,10 @@ chmod +x wisecube_install.sh
 ```
 2. Run the install script with the `--install` command and after the openapi key is set will create all the require resources for the stack (network, volumes)
 
-if you use bash as the default shell use the commnd like this
 ```
 ./wisecube_install.sh --install
 ```
-else
-```
- bash ./wisecube_install.sh --install
-```
+
 
 ### Clean up
 To remove all the resources created run the script with the command `--uninstall`
